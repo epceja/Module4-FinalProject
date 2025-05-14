@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:8.0.0-alpine
+    container_name: redis-finalM4
+    ports:
+      - "6379:6379"
+    volumes:
+      - "/Users/epceja/DockerVolumes/CodeGym/final/Redis:/data"
+    restart: no
+
+  mysql:
+    image: arm64v8/mysql:8.0
+    container_name: mysql-finalM4
+    restart: no
+    environment:
+      MYSQL_DATABASE: 'test'              # name of database
+      MYSQL_USER: 'default'               # sample is the name of user
+      MYSQL_PASSWORD: 'password'          # password for sample user
+      MYSQL_ROOT_PASSWORD: 'password'     # password for root user
+    ports:
+      - "3307:3306"
+    volumes:
+      - "/Users/epceja/DockerVolumes/CodeGym/final/MySQL:/var/lib/mysql"
+
+volumes:
+  redis_data:
+  mysql_data:
